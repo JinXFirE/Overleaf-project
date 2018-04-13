@@ -1,12 +1,13 @@
-\documentclass[a4paper]{article}
+\documentclass[a4paper,11pt]{article}
 
 %% Language and font encodings
 \usepackage[english]{babel}
 \usepackage[utf8x]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{gensymb}
 
 %% Sets page size and margins
-\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage[a4paper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,marginparwidth=1.75cm]{geometry}
 
 %% Useful packages
 \usepackage{amsmath}
@@ -14,93 +15,81 @@
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 
-\title{Your Paper}
-\author{You}
+\date{}
+\title{Flexible, Gigahertz Graphene and Carbon Nanotube transistors}
+\author{Ajinkya Munge}
 
 \begin{document}
 \maketitle
 
-\begin{abstract}
-Your abstract.
-\end{abstract}
+\section{Field Effect Transistor}
+A graphene or CNT transistor is built upon a traditional Field Effect Transistor(FET) model. A FET has three contacts viz. Drain, Gate and Source.It has also has three modes of operation viz. Cut-off, Linear and Saturation. The gate voltage controls the conduction channel between the Drain and Source contacts. The main aspects of performance in Gigahertz transistor are its its unity current gain cutoff or transit frequency $f_T$ , maximum oscillation frequency $f_{max}$ and the transconductance gain $g_m$. Some of the useful equations for calculating these parameters are given below    
 
-\section{Introduction}
+\begin{equation} \label{fteqn}
+f_t = \frac{\mu o}{1+ \frac{\mu o}{L} R_c W C_{diel} (V_{GS} - V_{th} - \frac{V_{DS}}{2} )  } \frac{V_{DS}}{2 \pi L (L + L_{ov,GS} +L_{ov,GD})}
+\end{equation}
 
-Your introduction goes here! Some examples of commonly used commands and features are listed below, to help you get started. If you have a question, please use the help menu (``?'') on the top bar to search for help or ask us a question. 
+\begin{equation} \label{fmaxeqn}
+  f_{max} \approx \frac{f_T}{\sqrt[]{2[g_D (R_{p,s} + R_{g}) + 2 \pi f_T C_{p,d} R_{g}]}} 
+\end{equation}
 
-\section{Some examples to get started}
+Equation \ref{fteqn} is a powerful equation which relates the intrinsic mobility($\mu o$),  contact resistance ($R_c$ W), gate dielectric ($C_{diel}$), gate to source voltage($V_{GS}$) and drain to source voltage($V_{DS}$) to the transit frequency \cite{klauk2018will}. Equation \ref{fmaxeqn} then gives the maximum possible power gain cutoff frequency($f_{max}$) from $f_T$, output conductance ($g_D$), gate resistance ($R_g$), source parasitic resistance ($R_{p,s}$) and gate capacitance($C_{p,d}$).    
+\newline
+In Graphene field effect transistors (G-FETs), the conduction channel is made up of Graphene \cite{yeh2014gigahertz} whereas in Carbon Nanotube Transistors(CNT-FETs), channel is made up of semiconducting carbon nanotubes\cite{zhong2017carbon}. The mobilities of these materials are extremely high and therefore the performance is usually dictated by contact resistances, $V_{DS}$ level and channel length as per the equations \ref{fteqn} and \ref{fmaxeqn}.
 
-\subsection{How to include Figures}
+\section{Performance Analysis}
+\subsection{Graphene Field Effect Transistors (G-FETs)}
+G-FETs have an impressive charge mobility due to their 2D lattice structure and almost no defects. Carrier mobilities upto 8000 $\frac{cm^2}{V.s}$ \cite{kim2009realization} have been reported. But these high mobilities are usually attained at the expense of high contact resistances. As per the equation \ref{fteqn}, contact resistance is a dominating factor that limits the high frequency response when the mobility is extremely high. Actually, increasing mobility after 1000 $\frac{cm^2}{V.s}$ does not even yield significant improvements to $f_T$. However, reducing the contact resistance from 1000$\Omega cm$ to 10 $\Omega cm$ leads to around 2 orders of improvement. This further underscores the fact that the present devices are limited by contact resistances rather than their carrier mobilities. Recent papers on Gigahertz G-FETs by Chao-Hui Yeh et al.\cite{yeh2014gigahertz} and Petrone et al.\cite{petrone2012graphene} show promising results, with max $f_T$ being reported to be as high as 32 GHz. 
 
-First you have to upload the image file from your computer using the upload link the project menu. Then use the includegraphics command to include it in your document. Use the figure environment and the caption command to add a number and a caption to your figure. See the code for Figure \ref{fig:frog} in this section for an example.
+\subsubsection{G-FET with $f_T =32 GHz$   and $f_{max} = 20GHz$ \cite{yeh2014gigahertz} } 
 
-\begin{figure}
-\centering
-\includegraphics[width=0.3\textwidth]{frog.jpg}
-\caption{\label{fig:frog}This frog was uploaded via the project menu.}
-\end{figure}
+The researchers reported 22 GHz and 13 GHz, $f_T$  and $f_{max}$ respectively at a strain of 2.5\% on a PET substrate with thickness of $125\mu m$. Their unique design of T-shaped gate structure allows larger source and drain electrodes, thereby reducing the total contact resistance. This fact along with a high mobility of 3000 $\frac{cm^2}{V.s}$, enables the high values of $f_T$  and $f_{max}$. This transistor is also a low $V_{DS}$ device because of the thermal constraint of the polymer substrate, Polyethylene Terephthalate (PET). The nature of $I_D$ v/s $V_{DS}$ is almost linear upto the max limit of $V_{DS}$(0.75V).  
 
-\subsection{How to add Comments}
+\subsubsection{G-FET with $f_T =10.7 GHz$   and $f_{max} = 3.7GHz$ \cite{petrone2012graphene}}
 
-Comments can be added to your project by clicking on the comment icon in the toolbar above. % * <john.hammersley@gmail.com> 2016-07-03T09:54:16.211Z:
-%
-% Here's an example comment!
-%
-To reply to a comment, simply click the reply button in the lower right corner of the comment, and you can close them when you're done.
+This G-FET is less flexible than the one discussed above, probably because of the thicker PET substrate($127\mu m$, $2\mu m$ thicker than the previous device). But it is still more flexible than conventional III-V metal oxide semiconductor films\cite{wang2012self}. This transistor gives a noteworthy $f_T$  and $f_{max}$ values of 6.3 GHz and 2.5 GHz, respectively under upto 1.75\% strain.Mobility was reported to be ~1500 $\frac{cm^2}{V.s}$ at $V_{GS}=-0.25V$. The contact resistance of this G-FET is reported to be less than 300$\Omega cm$.  
 
-Comments can also be added to the margins of the compiled PDF using the todo command\todo{Here's a comment in the margin!}, as shown in the example on the right. You can also add inline comments:
+\subsection{Carbon Nanotube Field Effect Transistors (CNT-FETs)}
+One of the perks of using CNTs over graphene is the presence of band-gap in semiconducting CNTs, which enables current saturation at shorter gate lengths, and the possibility of having lower standby power consumption and higher power gain over G-FETs. The performance of CNT FETs depends on the purity of the semiconducting CNTs. Higher the purity, lower is the leakage current and therefore higher on/off ratio can be achieved\cite{zhong2017carbon}. This also translates to better sub-threshold slope ($S = \frac{\partial log(I_D)}{\partial V_{GS}}$). To average out the effects of random(chiral) alignment or varied concentration of metallic and semiconducting CNTs, researchers have successfully used multi channels using CNTs\cite{bethoux20068} \cite{steiner2012high}. High carrier mobility, velocity saturation and extremely small intrinsic gate capacitances found in CNT FETs make them a really exciting choice for fabricating 1THz FETs in near future. Some of the highest performance CNT FETs boast upto 150 GHz $f_T$\cite{steiner2012high} and 70 GHz $f_{max}$ \cite{cao2016radio}.
 
-\todo[inline, color=green!40]{This is an inline comment.}
+\subsubsection{CNT FETs with $f_T =150 GHz$   and $f_{max} = 30 GHz$ \cite{steiner2012high} }
+This transistor has multi channel($L_g$), ultra small CNTs having gate length of just 100nm. However, measured extrinsic current gain($f_T$) and the power gain cut-off($f_{max}$) frequencies were just 7GHz and 15GHz respectively at this gate length.The reported high gain was obtained experimentally after de-embedding process.The CNTs were produced through centrifugation-enriched solutions containing 99.6\% semiconducting CNTs which had an average diameter of 1.5nm. The parasitic source resistance ($R_{p,s}$) and gate resistance ($R_{g}$)  was found to be is 250 $\Omega$ and 45 $\Omega$,respectively with output conductance($g_D$) of 25 $\frac{\mu S}{\mu m}$.  The researchers tested this transistor in $V_{D}$ range of (-2V to 0V) with $V_{G}$ varying between (-4V to 4V). The researchers don't actually report strain performance, but imply that plastic substrate can be used to make flexible FETs.    
 
-\subsection{How to add Tables}
+\subsubsection{CNT FETs with $f_T =100 GHz$   and $f_{max} = 70 GHz$ \cite{cao2016radio} }
+This is the only CNT transistor which boasts of both $f_T$  and $f_{max}$ values being higher than 70GHz (after de-embedding). The researchers used polyfluorene-sorted CNTs which showed significant improvement in RF performance compared to CVD aligned CNTs. Self- aligned T-shaped gate structure is used to reduce parasitic capacitance, decrease gate resistance and for scaling down channel length to ~100nm. This transistor suffers from Drain induced lowering effect (DIBL), leading to poor $\frac{I_{D,ON}}{I_{D,OFF}}$ ratio. The transistor was tested for a $V_{DS}$ range of -0.1V to -1.6V with a step of -0.3V. Minimum $\frac{I_{D,ON}}{I_{D,OFF}}$ ratio of ~50 was found at $V_{DS}$ = -1.6V, as expected. The peak transconductance of ~310 $\frac{\mu S}{\mu m}$ (forward sweep) and ~210 $\frac{\mu S}{\mu m}$ (backward sweep) was found to be six times better than other reported aligned CNT RF transistors \cite{steiner2012high,che2013t}.
 
-Use the table and tabular commands for basic tables --- see Table~\ref{tab:widgets}, for example. 
+\section{Fabrication Methodologies}
 
-\begin{table}
-\centering
-\begin{tabular}{l|r}
-Item & Quantity \\\hline
-Widgets & 42 \\
-Gadgets & 13
-\end{tabular}
-\caption{\label{tab:widgets}An example table.}
-\end{table}
+\subsection{Chemical Vapor Deposition (CVD)}
+In CVD, the material to be deposited is in gaseous form which reacts with the surface of the substrate. This leads to a thin film being deposited on the substrate whose thickness can be controlled by time. Temperature plays a crucial role as it dictates the type of reaction that occurs\cite{de2016cvd}. 
+\newline
+In G-FETs, Graphene coating on substrates, including Polyethylene Terephthalate (PET), Poly-ethylene napthalate(PEN), is usually done using atmosphere-pressure CVD technique on Cu-foil \cite{yeh2014gigahertz}. The first stage, the pyrolysis to disassociate carbon atoms is carried out on the surface of the substrate to prevent the precipitation of carbon clusters (soot) during the gas phase. The second phase is creating the carbon structure out of the disassociated carbon atoms using a suitable catalyst at around $1000 \degree$C.
+   
+\subsection{Photolithography}
+Photolithography is the chief fabrication technique used to fabricate integrated circuits. Generally, photolithography includes substrate preparation, photoresist spin coat, prebake, exposure, post-exposure bake, development and postbake. Some of the major processes in photolithography, etching, and spin coating.     
+\newline 
+Electron beam lithography and oxygen plasma etching is used to define the graphene strip. It's also used to define source/drain contacts. A T-gate structure is made by exposing a two-layer poly methyl methacrylate (PMMA) by an e-beam writer to create undercuts with different widths in each layer\cite{yeh2014gigahertz}. 
+Some G-FETs use a bottom gate approach wherein dielectric layer is applied over the gate electrode \cite{petrone2012graphene}.
+In CNT FETs along with T-shaping of gates, alignment markers were patterned on PMMA followed by identifying the aligned regions with SEM. Oxygen plasma was used to etch away the CNTs outside the device channels.
+% Spin coating is used to deposit thin chemical layers onto substrate. the main advantage of spin coating is to quickly and easily produce very uniform films, ranging from a few nanometers to a few microns. Thickness of the film can be varied by adjusting the speed of rotation of the substrate. 
+% Etching is the removal of materials from the wafer, usually a photoresist layer. Masks shield the photoresist layer from the UV light. The liquid chemicals or etchants are used to etch away the UV light exposed material for positive photoresist layers and shielded portion for negative photoresist layers.
 
-\subsection{How to write Mathematics}
+\subsection{Dose-controlled, Floating Evaporative Self-assembly (DFES) method \cite{joo2014dose}}
+The CNT ink is spread onto a water subphase using a syringe pump to supply discrete $\mu$ litre doses. A partially submerged quartz substrate is simultaneously pulled out of the aqueous subphase at constant lift rate. Each dose of ink spreads on the water due to surface tension effects and wets the surface of the receiving substrate creating a thin film of ink along the width of the substrate−water meniscus. An approximately 100 $\mu$m tall band of aligned CNTs is created by each dose which spans the width of the substrate. Tuning the lift and dose rate lead to almost full surface coverage of aligned CNTs, such that sequential bands are placed directly next to one another with negligible overlap \cite{cao2016radio}.
 
-\LaTeX{} is great at typesetting mathematics. Let $X_1, X_2, \ldots, X_n$ be a sequence of independent and identically distributed random variables with $\text{E}[X_i] = \mu$ and $\text{Var}[X_i] = \sigma^2 < \infty$, and let
-\[S_n = \frac{X_1 + X_2 + \cdots + X_n}{n}
-      = \frac{1}{n}\sum_{i}^{n} X_i\]
-denote their mean. Then as $n$ approaches infinity, the random variables $\sqrt{n}(S_n - \mu)$ converge in distribution to a normal $\mathcal{N}(0, \sigma^2)$.
+\section{Current Trends}
+Presently, the Si-GE Heterojunction Bipolar Transistors(HBTs) being researched by B. Heinemann et al\cite{heinemann2016sige} have reached $f_{max}$ and $f_T$ of 720 GHz and 505GHz respectively. Comparatively, the $f_{max}$ for fastest flexible G-FET is 30 GHz and for fastest flexible CNT-FET is 70GHz, which are one order lower than the fastest devices available. However,both graphene and CNT have the potential to reach 1000GHz performance level due to their extremely high carrier mobility, the ability to scale down to nanometer channel lengths and they possess higher flexibility and stability at high strains unlike the conventional III-V metal oxide transistors. These technologies could pave a path for new age flexible, high performance RF devices.       
+\newline
+New research in both CNT FETs and G-FETs is currently focused on increasing the carrier mobility. This is usually at the expensive of higher contact resistance, thereby compromising the high frequency of the devices as proven by the equations \ref{fteqn} \& \ref{fmaxeqn}. In CNT- FETs, new purification techniques such as nanoscale thermocapillary flows method\cite{jin2013using}, trojan catalyst method\cite{hu2015growth}, and evaporator self assembly method\cite{brady2016quasi}  are being developed to increase the concentration of semiconducting CNTs in CNT sample.   
 
+\section{Limitations}
+\subsection{G-FETs}
+One major issue with G-FET technology which restricts their use in digital electronics is their poor on/off ratio. Most high quality G-FETs have no more than 1000 $\frac{I_{D,ON}}{I_{D,OFF}}$ ratio \cite{vu2017high}. Silicon FETs being used commercially have $\frac{I_{D,ON}}{I_{D,OFF}}$ ratio of $10^6 - 10^8$. As RF applications deal with max frequency of oscillation rather than on/off ratios, G-FET is still a good solution for flexible RF circuits. Another limitation worth noting is the loss of performance when the transistor was bent to its limits\cite{yeh2014gigahertz}. Failure beyond the strain limit is usually due to cracking of gate electrodes\cite{petrone2012graphene}.
 
-\subsection{How to create Sections and Subsections}
-
-Use section and subsections to organize your document. Simply use the section and subsection buttons in the toolbar to create them, and we'll handle all the formatting and numbering automatically.
-
-\subsection{How to add Lists}
-
-You can make lists with automatic numbering \dots
-
-\begin{enumerate}
-\item Like this,
-\item and like this.
-\end{enumerate}
-\dots or bullet points \dots
-\begin{itemize}
-\item Like this,
-\item and like this.
-\end{itemize}
-
-\subsection{How to add Citations and a References List}
-
-You can upload a \verb|.bib| file containing your BibTeX entries, created with JabRef; or import your \href{https://www.overleaf.com/blog/184}{Mendeley}, CiteULike or Zotero library as a \verb|.bib| file. You can then cite entries from it, like this: \cite{greenwade93}. Just remember to specify a bibliography style, as well as the filename of the \verb|.bib|.
-
-You can find a \href{https://www.overleaf.com/help/97-how-to-include-a-bibliography-using-bibtex}{video tutorial here} to learn more about BibTeX.
-
-We hope you find Overleaf useful, and please let us know if you have any feedback using the help menu above --- or use the contact form at \url{https://www.overleaf.com/contact}!
-
-\bibliographystyle{alpha}
-\bibliography{sample}
+\subsection{CNT-FETs}
+The main limitation lies in the inability to completely separate the semiconducting CNTs from the metallic CNTs. This is exceptionally important, because even a small concentration of metallic CNTs increase leakage current and lead to poor on/off ratios. Another issue is to produce pure Single Walled carbon nanotubes (SWCNTs), as they are usually produced with impurities including Multi walled CNTs by present methods such as extended alcohol catalytic chemical vapor deposition\cite{hou2017extended}. The CNTs purified by solution processed array method can have extremely high contact resistance, upto $500k\Omega$ which is 50 times higher than contact resistances obtained from an individually grown CNT FET\cite{steiner2012high}. Strain performance is not explored in high frequency CNT FETs in many research papers.      
+\newpage
+\bibliographystyle{plain}
+\bibliography{bibliography}
 
 \end{document}
